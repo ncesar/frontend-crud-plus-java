@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import {
   Avatar,
   Button,
@@ -38,8 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = ({ history }) => {
   const classes = useStyles();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const loginHandler = useCallback(
     async (event) => {
@@ -63,25 +61,20 @@ const Login = ({ history }) => {
     return <Redirect to="/" />;
   }
 
-  const onChangeHandler = (event, hook) => {
-    hook(event.target.value);
-  };
   const inputFields = [
     {
       title: 'Email',
-      value: email,
-      onChange: (event) => onChangeHandler(event, setEmail),
       autoComplete: 'email',
       name: 'email',
       autoFocus: true,
+      type: 'email',
     },
     {
       title: 'Password',
-      value: password,
-      onChange: (event) => onChangeHandler(event, setPassword),
       autoComplete: 'current-password',
       name: 'password',
       autoFocus: false,
+      type: 'password',
     },
   ];
   return (
@@ -96,7 +89,7 @@ const Login = ({ history }) => {
         <form className={classes.form} noValidate onSubmit={loginHandler}>
           {inputFields.map((input, index) => (
             <TextInput
-              key={`${index}_${input.value}`}
+              key={`${index}_${input.name}`}
               variant="outlined"
               margin="normal"
               required
@@ -106,6 +99,7 @@ const Login = ({ history }) => {
               label={input.title}
               autoFocus={input.autoFocus}
               autoComplete={input.autoComplete}
+              type={input.type}
             />
           ))}
           <Button

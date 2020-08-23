@@ -22,10 +22,7 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="/">
-        Virtual Store
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link to="/">Virtual Store</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -95,12 +92,14 @@ const SignUp = ({ history }) => {
       value: email,
       onChange: (event) => onChangeHandler(event, setEmail),
       name: 'email',
+      type: 'email',
     },
     {
       title: 'Password',
       value: password,
       onChange: (event) => onChangeHandler(event, setPassword),
       name: 'password',
+      type: 'password',
     },
     {
       title: 'Name',
@@ -133,7 +132,7 @@ const SignUp = ({ history }) => {
         <form className={classes.form} noValidate onSubmit={signUpHandler}>
           {inputFields.map((input, index) => (
             <TextInput
-              key={`${index}_${input.value}`}
+              key={`${index}_${input.name}`}
               value={input.value}
               onChange={input.onChange}
               margin="normal"
@@ -142,6 +141,7 @@ const SignUp = ({ history }) => {
               id={input.name}
               label={input.title}
               name={input.name}
+              type={input.type}
             />
           ))}
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
