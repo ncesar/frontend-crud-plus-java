@@ -155,6 +155,7 @@ const SignUp = ({ history }) => {
               label="Birth date"
               value={selectedDate}
               onChange={handleDateChange}
+              style={{ width: '100%' }}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
