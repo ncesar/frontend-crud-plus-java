@@ -73,6 +73,7 @@ const Login = ({ history }) => {
       onChange: (event) => onChangeHandler(event, setEmail),
       autoComplete: 'email',
       name: 'email',
+      autoFocus: true,
     },
     {
       title: 'Password',
@@ -80,6 +81,7 @@ const Login = ({ history }) => {
       onChange: (event) => onChangeHandler(event, setPassword),
       autoComplete: 'current-password',
       name: 'password',
+      autoFocus: false,
     },
   ];
   return (
@@ -102,7 +104,7 @@ const Login = ({ history }) => {
               id={input.name}
               name={input.name}
               label={input.title}
-              autoFocus
+              autoFocus={input.autoFocus}
               autoComplete={input.autoComplete}
             />
           ))}
